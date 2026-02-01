@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Receptionist Demo</title>
+
+  <!-- Hide ElevenLabs Bubble -->
+  <style>
+    elevenlabs-convai {
+      --convai-launcher-display: none !important;
+    }
+  </style>
+
+  <!-- ElevenLabs Widget -->
+  <script
+    src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+    async>
+  </script>
+</head>
+
+<body style="font-family: Arial, sans-serif; padding: 40px;">
+
+  <h1>AI Receptionist Demo</h1>
+
+  <p>Talk to a live booking assistant.</p>
+
+  <!-- Button -->
+  <button
+    id="openAI"
+    style="
+      padding:14px 28px;
+      font-size:16px;
+      border-radius:8px;
+      background:#000;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+    "
+  >
+    Start Demo
+  </button>
+
+  <!-- Widget -->
+  <elevenlabs-convai
+    id="aiWidget"
+    agent-id="agent_9101kg9arybteqnbgzws6z6eqhvp">
+  </elevenlabs-convai>
+
+  <!-- Trigger -->
+  <script>
+    document.getElementById("openAI").addEventListener("click", function () {
+      const widget = document.querySelector("elevenlabs-convai");
+
+      if (!widget || !widget.shadowRoot) return;
+
+      const launcher =
+        widget.shadowRoot.querySelector("button");
+
+      if (launcher) launcher.click();
+    });
+  </script>
+
+</body>
+</html>
