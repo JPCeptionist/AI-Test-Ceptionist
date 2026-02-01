@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ceptionist Demo</title>
+
+  <!-- ElevenLabs -->
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
+
+  <style>
+
+    :root {
+      --cream: #f6efe4;
+      --dark: #1f2a2e;
+      --orange: #ff9f1c;
+      --text-light: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text-light);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+
+    header {
+      background: var(--cream);
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+    }
+
+    .contact-btn {
+      border: 2px solid #111;
+      padding: 8px 18px;
+      border-radius: 4px;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 90px);
+    }
+
+    .hero-left {
+      padding: 80px 60px;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-left h1 {
+      font-size: 48px;
+      margin-bottom: 25px;
+      line-height: 1.2;
+    }
+
+    .hero-left p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 40px;
+      color: #ddd;
+    }
+
+    .demo-btn {
+      background: var(--orange);
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 17px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: fit-content;
+      font-weight: 600;
+    }
+
+    .demo-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* RIGHT */
+
+    .hero-right {
+      background: url("https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    /* DEMO PANEL */
+
+    .demo-panel {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .demo-box {
+      background: #111;
+      width: 420px;
+      max-width: 90%;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .demo-box h2 {
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* Hide default bubble */
+
+    elevenlabs-convai {
+      --convai-launcher-display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<header>
+  <div class="logo">Ceptionist</div>
+
+  <nav>
+    <a href="#">Services</a>
+    <a href="#">Demo</a>
+    <a href="#">Pricing</a>
+    <a href="#" class="contact-btn">Contact Us</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-left">
+
+    <h1>
+      Stop Losing Money from<br>
+      Unanswered Calls
+    </h1>
+
+    <p>
+      Transform your client interactions with Ceptionist's AI-powered
+      answering services. Elevate your business.
+    </p>
+
+    <button class="demo-btn" id="openDemo">
+      Try It Now
+    </button>
+
+  </div>
+
+  <div class="hero-right">
+    <div class="overlay"></div>
+  </div>
+
+</section>
+
+
+<!-- DEMO MODAL -->
+
+<div class="demo-panel" id="demoPanel">
+
+  <div class="demo-box">
+
+    <span class="close-btn" id="closeDemo">✕</span>
+
+    <h2>Live AI Receptionist Demo</h2>
+    <p>Speak to the assistant below</p>
+
+    <br>
+
+    <!-- Eleven Agent -->
+    <elevenlabs-convai
+      id="aiWidget"
+      agent-id="agent_9101kg9arybteqnbgzws6z6eqhvp">
+    </elevenlabs-convai>
+
+  </div>
+
+</div>
+
+
+<!-- SCRIPT -->
+
+<script>
+
+const openBtn = document.getElementById("openDemo");
+const closeBtn = document.getElementById("closeDemo");
+const panel = document.getElementById("demoPanel");
+
+openBtn.onclick = () => {
+  panel.style.display = "flex";
+};
+
+closeBtn.onclick = () => {
+  panel.style.display = "none";
+};
+
+panel.onclick = (e) => {
+  if (e.target === panel) {
+    panel.style.display = "none";
+  }
+};
+
+</script>
+
+</body>
+</html>
